@@ -16,11 +16,9 @@ public class NormalTextFields
 	public static void main(String[] args) throws Exception 
 	{
 		
-		WebDriver driver;
-		
 		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"//Drivers//chromedriver.exe");
 		
-		driver = new ChromeDriver();
+		WebDriver driver = new ChromeDriver();
 		
 		driver.get("https://testautomationpractice.blogspot.com/");
 		
@@ -78,7 +76,7 @@ public class NormalTextFields
 		
 		String date = "21";
 		String month = "July";
-		String year = "2021";
+		String year = "2023";
 		
 		
 		
@@ -121,17 +119,44 @@ public class NormalTextFields
 		
 		for(String winId:window_ids)
 		{
-			String title = driver.getTitle();
+			String title = driver.switchTo().window(winId).getTitle();
 			
 			if(title.equals("OrangeHRM HR Software | OrangeHRM"))
 			{
 				driver.findElement(By.linkText("Contact Sales")).click();
+				System.out.println("Clicked Contact Sales link successfully");
 			}
 			
-//			driver.switchTo().defaultContent();
+			if(title.equals("OrangeHRM"))
+			{
+				driver.close();
+			}
+			
+			else
+			{
+				continue;
+			}
+			
 		}
 		
-		Thread.sleep(5000);
+		
+		
+		driver.navigate().to("https://testautomationpractice.blogspot.com/");
+		
+		System.out.println("Navigated back to Test Automation Practice WebSite");
+		
+		// Tabs
+		WebElement wikipedia_text = driver.findElement(By.xpath("//input[@id='Wikipedia1_wikipedia-search-input']"));
+		wikipedia_text.clear();
+		wikipedia_text.sendKeys("Selenium");
+		
+		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		List<WebElement> results = driver.findElements(By.xpath("//div[@class='wikipedia-search-results']//div"));
+		System.out.println("Counting the total number of Search Results:"+results.size());
+		for(int i=0;i<results.size();i++)
+		{
+			results.get(i).click();
+		}
 		
 		driver.quit();
 		
