@@ -28,12 +28,11 @@ public class Tabs {
 		wikipedia_text.sendKeys("Selenium");
 				
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		List<WebElement> results = driver.findElements(By.xpath("//div[@class='wikipedia-search-results']//div"));
-		System.out.println("Counting the total number of Search Results:"+results.size());
+		int results = driver.findElements(By.xpath("//div[@class='wikipedia-search-results']//div")).size();
 		
-		for(int i=0;i<results.size();i++)
+		for(int i=0;i<results;i++)
 		{
-			results.get(i).click();
+			
 		}
 
 	}
