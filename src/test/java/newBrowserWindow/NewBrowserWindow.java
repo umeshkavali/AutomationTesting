@@ -1,4 +1,4 @@
-package newBroeserWindow;
+package newBrowserWindow;
 
 import java.time.Duration;
 import java.util.Set;
